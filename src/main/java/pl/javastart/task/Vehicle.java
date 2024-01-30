@@ -1,14 +1,19 @@
 package pl.javastart.task;
 
 public class Vehicle {
-    private String name;
-    private double tankCapacity;
-    private double averageConsumption;
+    protected String name;
+    protected double tankCapacity;
+    protected double averageConsumption;
 
     public Vehicle(String name, double tankCapacity, double averageConsumption) {
         this.name = name;
         this.tankCapacity = tankCapacity;
         this.averageConsumption = averageConsumption;
+    }
+
+    protected void printInfo() {
+        System.out.print("Nazwa " + name + " Pojemnosc baku " + tankCapacity
+                + " Srednie zuzycie " + averageConsumption);
     }
 
     public String getName() {

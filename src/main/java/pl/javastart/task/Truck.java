@@ -1,7 +1,14 @@
 package pl.javastart.task;
 
 public class Truck extends Car {
-    private double loadWeight;
+    public static final double AC_ADDITIONAL_CONSUMPTION = 1.6;
+    public static final double LOAD_ADDITIONAL_CONSUMPTION = 0.005;
+    protected double loadWeight;
+
+    public Truck(String name, double tankCapacity, double averageConsumption, boolean isClimaTurnedOn, double loadWeight) {
+        super(name, tankCapacity, averageConsumption, isClimaTurnedOn);
+        this.loadWeight = loadWeight;
+    }
 
     public double getLoadWeight() {
         return loadWeight;
@@ -11,16 +18,16 @@ public class Truck extends Car {
         this.loadWeight = loadWeight;
     }
 
-    public Truck(String name, double tankCapacity, double averageConsumption, boolean isClimaTurnedOn, double loadWeight) {
-        super(name, tankCapacity, averageConsumption, isClimaTurnedOn);
-        this.loadWeight = loadWeight;
+    public double countRange() {
+        if (isClimaTurnedOn) {
+            return ((tankCapacity / (averageConsumption + AC_ADDITIONAL_CONSUMPTION + LOAD_ADDITIONAL_CONSUMPTION * loadWeight) * PER_100_KM));
+        } else {
+            return ((tankCapacity / (averageConsumption + LOAD_ADDITIONAL_CONSUMPTION * loadWeight) * PER_100_KM));
+        }
     }
 
-    public double countRange(Vehicle vehicle, boolean isClimaTurnedOn, double loadWeight) {
-        if (isClimaTurnedOn) {
-            return ((vehicle.getTankCapacity() / (vehicle.getAverageConsumption() + 1.6 + 0.005 * loadWeight) * 100));
-        } else {
-            return (vehicle.getTankCapacity() / (vehicle.getAverageConsumption() + 0.05 * loadWeight) * 100);
-        }
+    @Override
+    public void printInfo() {
+        super.printInfo();
     }
 }
