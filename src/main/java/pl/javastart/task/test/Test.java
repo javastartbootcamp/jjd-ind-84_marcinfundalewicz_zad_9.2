@@ -1,4 +1,7 @@
-package pl.javastart.task;
+package pl.javastart.task.test;
+
+import pl.javastart.task.Car;
+import pl.javastart.task.Truck;
 
 public class Test {
 

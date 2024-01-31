@@ -1,8 +1,8 @@
 package pl.javastart.task;
 
 public class Truck extends Car {
-    public static final double AC_ADDITIONAL_CONSUMPTION = 1.6;
-    public static final double LOAD_ADDITIONAL_CONSUMPTION = 0.005;
+    protected static final double AC_ADDITIONAL_CONSUMPTION = 1.6;
+    protected static final double LOAD_ADDITIONAL_CONSUMPTION = 0.005;
     protected double loadWeight;
 
     public Truck(String name, double tankCapacity, double averageConsumption, boolean isClimaTurnedOn, double loadWeight) {
@@ -10,19 +10,12 @@ public class Truck extends Car {
         this.loadWeight = loadWeight;
     }
 
-    public double getLoadWeight() {
-        return loadWeight;
-    }
-
-    public void setLoadWeight(double loadWeight) {
-        this.loadWeight = loadWeight;
-    }
-
-    public double countRange() {
+    @Override
+    public double currentConsumption() {
         if (isClimaTurnedOn) {
-            return ((tankCapacity / (averageConsumption + AC_ADDITIONAL_CONSUMPTION + LOAD_ADDITIONAL_CONSUMPTION * loadWeight) * PER_100_KM));
+            return averageConsumption + AC_ADDITIONAL_CONSUMPTION +  LOAD_ADDITIONAL_CONSUMPTION * loadWeight;
         } else {
-            return ((tankCapacity / (averageConsumption + LOAD_ADDITIONAL_CONSUMPTION * loadWeight) * PER_100_KM));
+            return averageConsumption +  LOAD_ADDITIONAL_CONSUMPTION * loadWeight;
         }
     }
 

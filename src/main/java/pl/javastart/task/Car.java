@@ -1,7 +1,7 @@
 package pl.javastart.task;
 
 public class Car extends  Vehicle {
-    private static final double AC_ADDITIONAL_CONSUMPTION = 0.8;
+    protected static final double AC_ADDITIONAL_CONSUMPTION = 0.8;
     protected static final int PER_100_KM = 100;
     protected boolean isClimaTurnedOn;
 
@@ -10,19 +10,19 @@ public class Car extends  Vehicle {
         this.isClimaTurnedOn = isClimaTurnedOn;
     }
 
-    public boolean isClimaTurnedOn() {
-        return isClimaTurnedOn;
+    double countRange() {
+        return tankCapacity / currentConsumption() * PER_100_KM;
     }
 
-    public double countRange() {
+    double currentConsumption() {
         if (isClimaTurnedOn) {
-            return ((tankCapacity / (averageConsumption + AC_ADDITIONAL_CONSUMPTION) * PER_100_KM));
+            return averageConsumption + AC_ADDITIONAL_CONSUMPTION;
         } else {
-            return (tankCapacity / averageConsumption) * PER_100_KM;
+            return averageConsumption;
         }
     }
 
-    protected void printInfo() {
+    public void printInfo() {
         super.printInfo();
         System.out.print(" Zasieg ");
         System.out.printf("%.2f", countRange());

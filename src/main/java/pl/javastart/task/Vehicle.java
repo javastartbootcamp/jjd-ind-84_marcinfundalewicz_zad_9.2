@@ -11,32 +11,9 @@ public class Vehicle {
         this.averageConsumption = averageConsumption;
     }
 
-    protected void printInfo() {
+    public void printInfo() {
         System.out.print("Nazwa " + name + " Pojemnosc baku " + tankCapacity
                 + " Srednie zuzycie " + averageConsumption);
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getTankCapacity() {
-        return tankCapacity;
-    }
-
-    public void setTankCapacity(double tankCapacity) {
-        this.tankCapacity = tankCapacity;
-    }
-
-    public double getAverageConsumption() {
-        return averageConsumption;
-    }
-
-    public void setAverageConsumption(double averageConsumption) {
-        this.averageConsumption = averageConsumption;
-    }
 }
+
